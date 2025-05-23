@@ -23,35 +23,37 @@ public class Solution {
 				map[x] = st.nextToken().split("");
 			}
 			
-//			for(int x = 0; x < 8; x++) {
-//				for(int y = 0; y < 8; y++) {
-//					System.out.print(map[x][y] + " ");
-//				}
-//				System.out.println();
-//			}
-			
-			System.out.println("W: " + w);
-			
 			// 탐색
 			boolean rFlag = true;
 			boolean cFlag = true;
-			for(int x = 0; x < 9 - len; x++) {
-				for(int y = 0; y < 9 - len; y++) {
+			// 세로 탐
+			for(int x = 0; x < 9-len; x++) {
+				for(int y = 0; y < 8; y++) {
 					// 가로 세 탐색
 					for(int s = 0; s < w; s++) {
-						if(map[x+s][y] != map[x+len-1-s][y]) {
+						if(!map[x+s][y].equals(map[x+len-1-s][y])) {
 							cFlag = false;
-						}
-						if(map[x][y+s] != map[x][y+len-1-s]) {
-							rFlag = false;
 						}
 					}
 					if(cFlag) total++;
+					
+					// flag 초기화
+					cFlag = true;
+				}
+			}
+			
+			for(int x = 0; x < 8; x++) {
+				for(int y = 0; y < 9-len; y++) {
+					// 가로 세 탐색
+					for(int s = 0; s < w; s++) {
+						if(!map[x][y+s].equals(map[x][y+len-1-s])) {
+							rFlag = false;
+						}
+					}
 					if(rFlag) total++;
 					
 					// flag 초기화
-					cFlag = false;
-					rFlag = false;
+					rFlag = true;
 				}
 			}
 			
