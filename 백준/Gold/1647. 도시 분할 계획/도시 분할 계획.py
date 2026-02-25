@@ -23,7 +23,8 @@ def find(n) -> int:
     if parents[n] == n:
         return n
     else:
-        return find(parents[n])
+        parents[n] = find(parents[n])
+    return parents[n]
 
 # connect parent func
 def connect(n1, n2):
