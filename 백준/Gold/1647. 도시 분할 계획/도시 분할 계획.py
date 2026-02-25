@@ -29,12 +29,10 @@ def find(n) -> int:
 def connect(n1, n2):
     n1_parent = find(n1)
     n2_parent = find(n2)
-    # print(n1_parent, n2_parent)
     if n1_parent < n2_parent:
         parents[n2_parent] = n1_parent
     else:
         parents[n1_parent] = n2_parent
-    # print(parents)
 
 # 최소 비용 탐색
 while costs:
@@ -43,13 +41,10 @@ while costs:
 
     c, a, b = heapq.heappop(costs)
 
-    # print(a, b, c)
-
     if find(a) != find(b):
         connect(a, b)
         total_cost += c
         last_cost = c
         connect_node_num += 1
-
 
 print(total_cost - last_cost)
